@@ -1,0 +1,24 @@
+{% extends "emergency/base.html" %}
+{% load static %}
+
+{% block title %}staff menu{% endblock %}
+
+{% block body %}
+    <div style="color: #fff">
+      <div class="container">
+        <h1 style="font-size: 3.5em;">👋 Welcome, {{ user.username }}!</h1>
+      </div>
+      <div class="container">
+        <h3>No accident now! Phew...</h3>
+      </div>
+        <p></p>
+      <div class="container">
+        <h2><i class="fas fa-solid fa-link"></i> Shortcut</h2>
+          <p>
+              <a href="{% url 'admin:auth_user_changelist'  %}" class="btn btn-main"><i class="fas fa-solid fa-user"></i> User list</a>
+              <a href="{% url 'admin:emergency_car_changelist'  %}" class="btn btn-main"><i class="fas fa-solid fa-car"></i> Car list</a>
+              <a href="{% url 'admin:emergency_location_changelist'  %}" class="btn btn-main"><i class="fas fa-solid fa-house-user"></i> Location list</a>
+          </p>
+      </div>
+    </div>
+{% endblock %}

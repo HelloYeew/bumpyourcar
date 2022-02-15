@@ -44,6 +44,13 @@
                     Profile
                   </a>
                 </li>
+                {% if user.is_superuser %}
+                <li>
+                  <a href="{% url 'staff' %}" class="btn btn-main nav-link nav-link-header">
+                    Staff
+                  </a>
+                </li>
+                {% endif %}
                 {% endif %}
             </ul>
 
@@ -54,7 +61,9 @@
                 <img src="{{ user.profile.image.url }}" alt="{{ user.username }}" width="50" height="50" class="rounded-circle hvr-grow">
               </a>
               <ul class="dropdown-menu text-small text-decoration-none" aria-labelledby="dropdownUser1" aria-expanded="false">
-                <li><a class="dropdown-item spacing-hover" href="{% url 'profile' user.profile.id %}">Profile</a></li>
+              {% if user.is_superuser %}
+                  <li><a class="dropdown-item spacing-hover" href="{% url 'admin:index' %}">Database</a></li>
+              {% endif %}
                 <li><a class="dropdown-item spacing-hover" href="{% url 'settings' %}">Settings</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item spacing-hover" href="{% url 'logout' %}">Sign out</a></li>

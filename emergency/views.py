@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect
 
 
@@ -15,3 +15,12 @@ def drive(request):
         'background_image': 'img/943545.jpeg'
     }
     return render(request, 'emergency/drive.html', parameter)
+
+
+@user_passes_test(lambda u: u.is_superuser or u.is_staff)
+def staff(request):
+    parameter = {
+        'user': request.user,
+        'background_image': 'img/943545.jpeg'
+    }
+    return render(request, 'emergency/staff.html', parameter)
