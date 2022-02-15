@@ -3,6 +3,8 @@
 # bumpyourcar
  eXceed camp project to help you when you bump or drowned your car, and you are currently feel bad that you broke your car and not able to help but you still need help by an emergency.
 
+Thanks to [this osu! beatmap](https://osu.ppy.sh/beatmapsets/1381340) for making this project more sus.
+
 ## Developing bumpyourcar
 
 Please make sure you have the following prerequisites:
