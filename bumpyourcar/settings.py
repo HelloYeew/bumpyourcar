@@ -35,6 +35,7 @@ LOGIN_REDIRECT_URL = '/'
 
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
+    'emergency.apps.EmergencyConfig',
     'admin_interface',
     'colorfield',
     'crispy_forms',
