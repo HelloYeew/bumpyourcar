@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 
@@ -7,6 +8,7 @@ def home(request):
     return render(request, 'emergency/home.html')
 
 
+@login_required
 def drive(request):
     parameter = {
         'user': request.user,

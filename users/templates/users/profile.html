@@ -23,13 +23,13 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <img class="rounded-circle" src="{{ user.profile.image.url }}" alt="profile image" style="width:100%">
+                <img class="rounded-circle" src="{{ profile.image.url }}" alt="profile image" style="width:100%">
             </div>
             <div class="col-md-9">
-                <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-                <h2 class="text-muted-darker">{{ user.username }}</h2>
-                <p><i class="fas fa-solid fa-address-card" id="arrow-profile-menu"></i> {{ user.profile.personal_id }}</p>
-                <p><i class="fas fa-solid fa-house-user" id="arrow-profile-menu"></i> {{ user.profile.address }}</p>
+                <h1>{{ profile.user.first_name }} {{ profile.user.last_name }}</h1>
+                <h2 class="text-muted-darker">{{ profile.user.username }}</h2>
+                <p><i class="fas fa-solid fa-address-card" id="arrow-profile-menu"></i> {{ profile.personal_id }}</p>
+                <p><i class="fas fa-solid fa-house-user" id="arrow-profile-menu"></i> {{ profile.address }}</p>
             </div>
         </div>
     </div>

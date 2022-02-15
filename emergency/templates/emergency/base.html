@@ -31,7 +31,9 @@
                 <img id="header-logo" src="{% static 'img/drivelikesus.png' %}" height="65" alt="logo">
             </a>
 
+
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                {% if user.is_authenticated %}
                 <li>
                   <a href="{% url 'drive' %}" class="nav-link nav-link-header">
                     Drive
@@ -42,9 +44,12 @@
                     Profile
                   </a>
                 </li>
+                {% endif %}
             </ul>
 
+
             <div class="dropdown text-end">
+                {% if user.is_authenticated %}
               <a href="#" class="d-block link-dark text-decoration-none" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="{{ user.profile.image.url }}" alt="{{ user.username }}" width="50" height="50" class="rounded-circle hvr-grow">
               </a>
@@ -54,6 +59,9 @@
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item spacing-hover" href="{% url 'logout' %}">Sign out</a></li>
               </ul>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-main">Log In</a>
+                {% endif %}
             </div>
           </div>
         </div>

@@ -21,7 +21,7 @@ def register(request):
 
 def profile(request, profile_id):
     parameter = {
-        'user': get_object_or_404(User, id=profile_id),
+        'profile': get_object_or_404(Profile, id=profile_id),
         'background_image': 'img/943545.jpeg',
     }
     return render(request, 'users/profile.html', parameter)
