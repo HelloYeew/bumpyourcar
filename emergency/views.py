@@ -10,5 +10,6 @@ def home(request):
 def drive(request):
     parameter = {
         'user': request.user,
+        'background_image': 'img/943545.jpeg'
     }
     return render(request, 'emergency/drive.html', parameter)

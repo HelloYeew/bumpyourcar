@@ -1,0 +1,36 @@
+{% extends "emergency/base.html" %}
+{% load static %}
+
+{% block title %}profile{% endblock %}
+
+{% block body %}
+    <div class="container" style="color: #fff">
+        <div class="row">
+         {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == "success"%}
+                    <div class="alert alert-success">
+                        <i class="fas fa-check"></i> {{ message }}
+                    </div>
+                {% endif %}
+                {% if message.tags == "error"%}
+                    <div class="alert alert-danger">
+                        <i class="fas fa-times"></i> {{ message }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+          {% endif %}
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <img class="rounded-circle" src="{{ user.profile.image.url }}" alt="profile image" style="width:100%">
+            </div>
+            <div class="col-md-9">
+                <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+                <h2 class="text-muted-darker">{{ user.username }}</h2>
+                <p><i class="fas fa-solid fa-address-card" id="arrow-profile-menu"></i> {{ user.profile.personal_id }}</p>
+                <p><i class="fas fa-solid fa-house-user" id="arrow-profile-menu"></i> {{ user.profile.address }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
