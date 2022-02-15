@@ -2,10 +2,14 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .forms import *
-from django.contrib.auth.models import User
 
 
 def register(request):
+    """
+    The view for the register page.
+    :param request: WSGI request from user.
+    :return: Render the page and pass the value from context to the template (register.html)
+    """
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -20,6 +24,12 @@ def register(request):
 
 
 def profile(request, profile_id):
+    """
+    The view for the profile page. User can view other user's profile too by using the profile ID.
+    :param request: WSGI request from user.
+    :param profile_id: The ID of the target user.
+    :return: Render the page and pass the value from context to the template (profile.html)
+    """
     parameter = {
         'profile': get_object_or_404(Profile, id=profile_id),
         'background_image': 'img/943545.jpeg',
@@ -29,6 +39,11 @@ def profile(request, profile_id):
 
 @login_required
 def settings(request):
+    """
+    The view for the settings page. User can change their profile information here.
+    :param request: WSGI request from user.
+    :return: Render the page and pass the value from context to the template (settings.html)
+    """
     if request.method == 'POST':
         form = UserProfileSettingsForm(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():

@@ -142,7 +142,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 SILENCED_SYSTEM_CHECKS = ['security.W019']
 
-# Django crispy forms configuration
+# Django crispy forms and template configuration
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
