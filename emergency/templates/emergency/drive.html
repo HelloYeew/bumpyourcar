@@ -1,0 +1,52 @@
+{% extends "emergency/base.html" %}
+{% load static %}
+
+{% block style %}
+<style>
+html,
+body {
+    height: 100%;
+    background: linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("{% static 'img/943545.jpeg' %}") center center;
+}
+</style>
+{% endblock %}
+
+{% block title %}driving{% endblock %}
+
+{% block body %}
+  <header class="p-4 mb-4">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            {# In case you have some menu here#}
+        </ul>
+
+        <div class="dropdown text-end">
+          <a href="#" class="d-block link-dark text-decoration-none" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{% static 'img/nongphop.jpeg' %}" alt="mdo" width="50" height="50" class="rounded-circle hvr-grow">
+          </a>
+          <ul class="dropdown-menu text-small text-decoration-none" aria-labelledby="dropdownUser1" aria-expanded="false">
+            <li><a class="dropdown-item" href="#">wang</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+    <div style="color: #fff">
+      <div class="container">
+        <h1 style="font-size: 3.5em;">👋 Welcome, {{ user.username }}!</h1>
+      </div>
+      <div class="container">
+        <h2>Drive safe!</h2>
+      </div>
+    </div>
+    <div class="container">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/7209C874T2U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+{% endblock %}

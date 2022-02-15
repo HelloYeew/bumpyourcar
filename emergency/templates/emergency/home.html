@@ -11,10 +11,11 @@
         html,
         body {
             height: 100%;
-            background: linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("{% static 'img/827304.png' %}") center center;
+            background: linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("{% static 'img/1028252.jpeg' %}") center center;
         }
     </style>
     <link href="{% static 'css/home.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/index.css' %}" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&display=swap" rel="stylesheet">
@@ -22,15 +23,13 @@
     <title>Welcome to emergency system!</title>
   </head>
   <body id="particles-js" class="text-center">
-    <main class="form-signin position-absolute top-50 start-50 translate-middle">
-        <form>
-            <p class="fs-1 name">Let's start driving!</p>
+    <main class="form-signin position-absolute top-50 start-50 translate-middle p-4 welcome-container">
+        <p class="fs-1 name">Let's start driving!</p>
 
-            <div class="d-grid gap-2">
-                <a class="btn btn-primary" href="#" role="button">Sign in</a>
-                <a class="btn btn-primary" href="#" role="button">Register</a>
-            </div>
-        </form>
+        <div class="d-grid gap-2">
+            <a class="btn btn-main" href="{% url 'login' %}" role="button">Sign in</a>
+            <a class="btn btn-main" href="{% url 'register' %}" role="button">Register</a>
+        </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

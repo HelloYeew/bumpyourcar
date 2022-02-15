@@ -1,13 +1,46 @@
-{% extends "base.html" %}
+{% load static %}
 {% load crispy_forms_tags %}
 
-{% block title %}login{% endblock %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-{% block body %}
-    <form method='POST'>
-        {% csrf_token %}
-        {{ form | crispy }}
-        <button type='submit'>Submit</button>
-        Need An Account? <a href='{% url 'register' %}'>Sign Up</a>
-    </form>
-{% endblock %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        html,
+        body {
+            height: 100%;
+            background: linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("{% static 'img/1028252.jpeg' %}") center center;
+        }
+    </style>
+    <link href="{% static 'css/home.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/index.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/hover.css' %}" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/cebbc7821d.js" crossorigin="anonymous"></script>
+    <title>login - emergency system</title>
+  </head>
+  <body id="particles-js" class="text-center">
+    <main class="form-signin position-absolute top-50 start-50 translate-middle p-4 welcome-container">
+        <h1>Log In</h1>
+        <form method='POST'>
+            {% csrf_token %}
+            {{ form | crispy }}
+            <div class="d-grid gap-2">
+                <button type='submit' class="btn btn-main">Submit</button>
+            </div>
+            <p></p>
+            Need An Account?
+            <a href='{% url 'register' %}' class="text-decoration-none spacing-hover">Sign Up</a>
+        </form>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="{% static 'js/particles.min.js' %}"></script>
+    <script src="{% static 'js/particles_setup.js' %}"></script>
+  </body>
+</html>

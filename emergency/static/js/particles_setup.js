@@ -9,13 +9,13 @@ particlesJS('particles-js',
                 }
             },
             "color": {
-                "value": "#a3c0d9"
+                "value": "#ff66aa"
             },
             "shape": {
                 "type": "circle",
                 "stroke": {
                     "width": 0,
-                    "color": "#a3c0d9"
+                    "color": "#ff66aa"
                 },
                 "polygon": {
                     "nb_sides": 5
@@ -72,7 +72,7 @@ particlesJS('particles-js',
             "detect_on": "canvas",
             "events": {
                 "onhover": {
-                    "enable": false,
+                    "enable": true,
                     "mode": "bubble"
                 },
                 "onclick": {

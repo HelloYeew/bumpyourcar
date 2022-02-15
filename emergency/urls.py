@@ -5,5 +5,6 @@ from emergency import views
 from users import views as user_views
 
 urlpatterns = [
-    path('', views.home, name='home')
+    path('', views.home, name='home'),
+    path('drive', views.drive, name='drive')
 ]

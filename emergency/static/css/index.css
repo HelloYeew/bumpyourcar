@@ -1,0 +1,44 @@
+* {
+    font-family: "Comfortaa", cursive;
+    transition: all 0.2s;
+}
+
+/*Override the default bootstrap styling to our own style*/
+
+.btn-main {
+    color: #fff !important;
+    background-color: #ff66aa !important;
+    border-color: #ff66aa !important;
+    border-radius: 15rem !important;
+}
+
+.btn-main:hover {
+    color: #fff !important;
+    background-color: #dc1f79 !important;
+    border-color: #dc1f79 !important;
+}
+
+.form-control {
+    color: #fff !important;
+    background-color: #6a2f49 !important;
+    border-color: #ac4f78 !important;
+    border-radius: 15rem !important;
+    border: 3px solid;
+}
+
+a {
+    color: #ffafd2 !important;
+}
+
+.text-muted {
+    color: #e3d4df !important;
+}
+
+/*Our own styling*/
+
+.welcome-container {
+    color: #fff;
+    backdrop-filter: blur(5px);
+    background-color: rgba(253, 162, 199, 0.6);
+    border-radius: 2rem;
+}
