@@ -1,4 +1,4 @@
-![SUSSY BAKA](emergency/static/img/drivelikesus.png)
+![SUSSY BAKA](emergency/static/img/drivelikesus_small.png)
 
 # bumpyourcar
  eXceed camp project to help you when you bump or drowned your car, and you are currently feel bad that you broke your car and not able to help but you still need help by an emergency.
