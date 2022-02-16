@@ -14,6 +14,9 @@
                 <h2 class="text-muted-darker">{{ profile.user.username }}</h2>
                 <p><i class="fas fa-solid fa-address-card"></i> {{ profile.personal_id }}</p>
                 <p><i class="fas fa-solid fa-house-user"></i> {{ profile.address }}</p>
+                {% if profile.user.car %}
+                <p><i class="fas fa-solid fa-car"></i> {{ profile.user.car.name }}</p>
+                {% endif %}
             </div>
         </div>
     </div>
