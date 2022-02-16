@@ -13,7 +13,11 @@
       </div>
         <p></p>
       <div class="container">
-        <h2><i class="fas fa-solid fa-link"></i> Shortcut</h2>
+          <h2><i class="fas fa-solid fa-tasks"></i> Manage</h2>
+          <p>
+              <a href="{% url 'car_list'  %}" class="btn btn-main"><i class="fas fa-solid fa-car"></i> Car list</a>
+          </p>
+          <h2><i class="fas fa-database"></i> Shortcut to Database</h2>
           <p>
               <a href="{% url 'admin:auth_user_changelist'  %}" class="btn btn-main"><i class="fas fa-solid fa-user"></i> User list</a>
               <a href="{% url 'admin:emergency_car_changelist'  %}" class="btn btn-main"><i class="fas fa-solid fa-car"></i> Car list</a>

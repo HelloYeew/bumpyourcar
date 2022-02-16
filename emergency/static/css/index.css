@@ -34,6 +34,10 @@ a {
     color: #e3d4df !important;
 }
 
+.breadcrumb-item+.breadcrumb-item::before {
+    color: #fff!important;
+}
+
 /*Our own styling*/
 
 .welcome-container {

@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect
+from .models import Car
 
 
 def home(request):
@@ -42,3 +43,20 @@ def staff(request):
         'background_image': 'img/943545.jpeg'
     }
     return render(request, 'emergency/staff.html', parameter)
+
+
+@user_passes_test(lambda u: u.is_superuser or u.is_staff)
+def car_list(request):
+    """
+    The page for the staff to see all the car information.
+
+    This page is only accessible for the staff and superuser.
+
+    :param request: WSGI request from user.
+    :return: Render the page and pass the value from context to the template (car_list.html)
+    """
+    parameter = {
+        'car_list': Car.objects.all().order_by('name'),
+        'background_image': 'img/943545.jpeg'
+    }
+    return render(request, 'emergency/car_list.html', parameter)
