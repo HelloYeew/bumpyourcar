@@ -3,6 +3,11 @@
     transition: all 0.2s;
 }
 
+*::selection {
+    background-color: rgba(255, 148, 195, 0.6);
+    color: white;
+}
+
 /*Override the default bootstrap styling to our own style*/
 
 .btn-main {
