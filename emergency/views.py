@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from .models import Car
 
@@ -40,7 +41,8 @@ def staff(request):
     """
     parameter = {
         'user': request.user,
-        'background_image': 'img/943545.jpeg'
+        'background_image': 'img/943545.jpeg',
+        'accident_count': Car.objects.filter(has_accident=True).count(),
     }
     return render(request, 'emergency/staff.html', parameter)
 
@@ -56,7 +58,24 @@ def car_list(request):
     :return: Render the page and pass the value from context to the template (car_list.html)
     """
     parameter = {
-        'car_list': Car.objects.all().order_by('name'),
+        'car_list': Car.objects.all().order_by('id'),
         'background_image': 'img/943545.jpeg'
     }
     return render(request, 'emergency/car_list.html', parameter)
+
+
+@user_passes_test(lambda u: u.is_superuser or u.is_staff)
+def user_list(request):
+    """
+    The page for the staff to see all the user information.
+
+    This page is only accessible for the staff and superuser.
+
+    :param request: WSGI request from user.
+    :return: Render the page and pass the value from context to the template (user_list.html)
+    """
+    parameter = {
+        'user_list': User.objects.all().order_by('id'),
+        'background_image': 'img/943545.jpeg'
+    }
+    return render(request, 'emergency/user_list.html', parameter)

@@ -33,9 +33,9 @@
                 navigator.geolocation.getCurrentPosition(function(position) {
                 var lat = position.coords.latitude;
                 var lng = position.coords.longitude;
-                var url = "{% url 'update_user_location' user.id %}";
+                var url = "{% url 'user_location' user.id %}";
                 fetch(url, {
-                    method : "POST",
+                    method : "PUT",
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',

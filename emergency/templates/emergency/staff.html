@@ -9,12 +9,17 @@
         <h1 style="font-size: 3.5em;">👋 Welcome, {{ user.username }}!</h1>
       </div>
       <div class="container">
+          {% if accident_count == 0 %}
         <h3>No accident now! Phew...</h3>
+          {% else %}
+        <h3>You have {{ accident_count }} accident(s) now!</h3>
+          {% endif %}
       </div>
         <p></p>
       <div class="container">
           <h2><i class="fas fa-solid fa-tasks"></i> Manage</h2>
           <p>
+              <a href="{% url 'user_list'  %}" class="btn btn-main"><i class="fas fa-solid fa-user"></i> User list</a>
               <a href="{% url 'car_list'  %}" class="btn btn-main"><i class="fas fa-solid fa-car"></i> Car list</a>
           </p>
           <h2><i class="fas fa-database"></i> Shortcut to Database</h2>
