@@ -11,8 +11,48 @@
       <div class="container">
         <h2>Drive safe!</h2>
       </div>
+        {% if not debug %}
+      <div class="container">
+          <h1>Debug zone</h1>
+          <button onclick="enableLocation = false;" class="btn btn-main">Disable location</button>
+          <button onclick="enableLocation = true;" class="btn btn-main">Enable location</button>
+      </div>
+    {% endif %}
     </div>
     <div class="container">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/7209C874T2U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/KH_XIt-hm2Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        var enableLocation = true;
+
+        function postUserLocation() {
+            if (enableLocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                var lat = position.coords.latitude;
+                var lng = position.coords.longitude;
+                var url = "{% url 'update_user_location' user.id %}";
+                fetch(url, {
+                    method : "POST",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body : JSON.stringify({
+                        lat: parseFloat(lat),
+                        lng: parseFloat(lng),
+                    })
+                }).then(
+                    response => response.json()
+                ).then(
+                    html => console.log(html)
+                );
+            });
+            }
+        }
+        window.setInterval(postUserLocation, 1000);
+    </script>
 {% endblock %}
