@@ -61,6 +61,7 @@ Create the `.env` file with this template for your project's environment file:
 ```dotenv
 SECRET_KEY=cool_secret_key_here
 DEBUG=True
+ALLOWED_HOSTS=localhost
 ```
 
 Place the `.env` in `...\bumpyourcar\bumpyourcar` (The directory that contains `manage.py`)
