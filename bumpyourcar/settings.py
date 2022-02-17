@@ -126,7 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-STATIC_URL = 'static/'
+STATIC_URL = config('STATIC_URL', default="static/")
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
@@ -147,3 +147,7 @@ SILENCED_SYSTEM_CHECKS = ['security.W019']
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# Settings to make setup on eXceed server possible
+
+ROOT_URL = config('ROOT_URL', default="")
