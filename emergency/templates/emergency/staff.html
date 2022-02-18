@@ -10,7 +10,7 @@
       </div>
       <div class="container">
           {% if accident_count == 0 %}
-        <h3>No accident now! Phew...</h3>
+        <h3 id="emergency-count">No accident now! Phew...</h3>
           {% else %}
         <h3 id="emergency-count">You have {{ accident_count }} accident(s) now!</h3>
           {% endif %}
