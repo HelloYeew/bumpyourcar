@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Car
+from users.models import FirstLogin
 from django.db.models import Q
 
 
@@ -25,11 +26,14 @@ def drive(request):
     :param request: WSGI request from user.
     :return: Render the page and pass the value from context to the template (drive.html)
     """
-    parameter = {
-        'user': request.user,
-        'background_image': 'img/fuckinghelpme.png'
-    }
-    return render(request, 'emergency/drive.html', parameter)
+    if FirstLogin.objects.get(user=request.user).first_login:
+        parameter = {
+            'user': request.user,
+            'background_image': 'img/fuckinghelpme.png'
+        }
+        return render(request, 'emergency/drive.html', parameter)
+    else:
+        return redirect('first_login_prompt')
 
 
 @user_passes_test(lambda u: u.is_superuser or u.is_staff)

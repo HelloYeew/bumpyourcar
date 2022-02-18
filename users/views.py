@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from .models import FirstLogin
 from .forms import *
 
 
@@ -58,3 +59,41 @@ def settings(request):
         'profile_form': form,
     }
     return render(request, 'users/settings.html', parameter)
+
+
+@login_required
+def first_login_prompt(request):
+    """
+    The view that view only render and appear when FirstLogin that bind with user is False.
+
+    This page user will need to fill all of their information in order to finish this page.
+
+    :param request: WSGI request from user.
+    :return: Render the page and pass the value from context to the template (first_login_prompt.html).
+    Will return redirect instead if the FirstLogin is True.
+    """
+    first_login_value = FirstLogin.objects.get(user=request.user)
+    if first_login_value.first_login:
+        return redirect('drive')
+    else:
+        if request.method == 'POST':
+            form = FirstLoginPromptForm(request.POST)
+            user_object = request.user
+            profile_object = user_object.profile
+            if form.is_valid():
+                user_object.first_name = form.cleaned_data['first_name']
+                user_object.last_name = form.cleaned_data['last_name']
+                user_object.save()
+                profile_object.personal_id = form.cleaned_data['personal_id']
+                profile_object.address = form.cleaned_data['address']
+                profile_object.save()
+                first_login_value.first_login = True
+                first_login_value.save()
+                messages.success(request, f'Setup personal information successfully!')
+                return redirect('drive')
+        else:
+            form = FirstLoginPromptForm()
+        parameter = {
+            'form': form,
+        }
+        return render(request, 'users/first_login_prompt.html', parameter)

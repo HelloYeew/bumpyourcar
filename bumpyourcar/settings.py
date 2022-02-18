@@ -29,7 +29,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv(), default="localhost")
 
 LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/setup'
 
 # Application definition
 
@@ -145,7 +145,6 @@ SILENCED_SYSTEM_CHECKS = ['security.W019']
 # Django crispy forms and template configuration
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Settings to make setup on eXceed server possible
