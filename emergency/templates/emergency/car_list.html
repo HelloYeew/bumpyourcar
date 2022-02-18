@@ -43,7 +43,7 @@
                   {% else %}
                   <td>Vacant</td>
                   {% endif %}
-                  <td>{{ car.has_accident }}</td>
+                  <td>{% if car.has_accident %}Accident{% endif %} {% if car.has_drowned %}Drowned{% endif %}</td>
                   <td><a href="{% url 'admin:emergency_car_change' car.id %}" class="btn btn-main"><i class="fas fa-pen"></i> Manage</a></td>
                 </tr>
             {% endfor %}

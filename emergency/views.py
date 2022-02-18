@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Car
+from django.db.models import Q
 
 
 def home(request):
@@ -94,7 +95,7 @@ def emergency_list(request):
     :return: Render the page and pass the value from context to the template (emergency_list.html)
     """
     parameter = {
-        'emergency_list': Car.objects.filter(has_accident=True).order_by('id'),
+        'emergency_list': Car.objects.filter(Q(has_accident=True) | Q(has_drowned=True)).order_by('id'),
         'background_image': 'img/fuckinghelpme.png'
     }
     return render(request, 'emergency/emergency_list.html', parameter)
@@ -140,9 +141,7 @@ def resolve_car(request, car_id):
         return HttpResponse(status=400)
     else:
         car.has_accident = False
+        car.has_drowned = False
         car.save()
         messages.success(request, "Resolve succesfully!")
         return redirect('emergency_list')
-
-
-

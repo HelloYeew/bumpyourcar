@@ -13,7 +13,7 @@ class LocationSerializer(serializers.ModelSerializer):
 class CarStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = Car
-        fields = ['has_accident']
+        fields = ['has_accident', 'has_drowned']
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -26,7 +26,7 @@ class CarFullSerializer(serializers.ModelSerializer):
     user = UserSerializer()
     class Meta:
         model = Car
-        fields = ['id', 'name', 'has_accident', 'user']
+        fields = ['id', 'name', 'has_accident', 'has_drowned', 'user']
 
 
 class ProfileSerializer(serializers.ModelSerializer):

@@ -14,6 +14,7 @@ class Car(models.Model):
     name = models.CharField(max_length=100)
     user = models.OneToOneField(User, null=True, on_delete=models.SET_NULL, blank=True)
     has_accident = models.BooleanField(default=False)
+    has_drowned = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

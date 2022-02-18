@@ -21,13 +21,10 @@
                     <tr>
                       <th scope="col">Car ID</th>
                       <th scope="col">Image</th>
-                      <th scope="col">Username</th>
-                      <th scope="col">First Name</th>
-                      <th scope="col">Last Name</th>
-                      <th scope="col">Latitude</th>
-                      <th scope="col">Longtitude</th>
+                      <th scope="col">Full Name</th>
+                        <th scope="col">Accident Type</th>
                       <th scope="col">Car</th>
-                      <th scope="col">Manage</th>
+                      <th scope="col">Detail</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,11 +32,8 @@
                     <tr class="align-middle">
                       <th scope="row">{{ emergency.id }}</th>
                       <td><img src="{{ emergency.user.profile.image.url }}" alt="{{ emergency.user.username }}" class="rounded-circle" style="max-width:50px"></td>
-                      <td>{{ emergency.user.username }}</td>
-                      <td>{{ emergency.user.first_name }}</td>
-                      <td>{{ emergency.user.last_name }}</td>
-                      <td>{{ emergency.user.location.lat }}</td>
-                      <td>{{ emergency.user.location.lng }}</td>
+                      <td>{{ emergency.user.first_name }} {{ emergency.user.last_name }}</td>
+                        <td>{% if emergency.has_accident %}Accident{% endif %} {% if emergency.has_drowned %}Drowned{% endif %}</td>
                       <td>{{ emergency.user.car.name }}</td>
                         <td><a href="{% url 'emergency_detail' emergency.id %}" class="btn btn-main"><i class="fas fa-pen"></i> Detail</a></td>
                     </tr>
