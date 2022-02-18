@@ -6,4 +6,5 @@ urlpatterns = [
     path('car/<int:car_id>', car_status, name='car_status'),
     path('car/full/<int:car_id>', get_car, name='get_car'),
     path('profile/<int:user_id>', get_profile, name='get_profile'),
+    path('emergency/count', get_emergency_count, name='get_emergency_count'),
 ]

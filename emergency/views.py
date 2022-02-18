@@ -24,7 +24,7 @@ def drive(request):
     """
     parameter = {
         'user': request.user,
-        'background_image': 'img/943545.jpeg'
+        'background_image': 'img/fuckinghelpme.png'
     }
     return render(request, 'emergency/drive.html', parameter)
 
@@ -41,7 +41,7 @@ def staff(request):
     """
     parameter = {
         'user': request.user,
-        'background_image': 'img/943545.jpeg',
+        'background_image': 'img/fuckinghelpme.png',
         'accident_count': Car.objects.filter(has_accident=True).count(),
     }
     return render(request, 'emergency/staff.html', parameter)
@@ -59,7 +59,7 @@ def car_list(request):
     """
     parameter = {
         'car_list': Car.objects.all().order_by('id'),
-        'background_image': 'img/943545.jpeg'
+        'background_image': 'img/fuckinghelpme.png'
     }
     return render(request, 'emergency/car_list.html', parameter)
 
@@ -76,6 +76,24 @@ def user_list(request):
     """
     parameter = {
         'user_list': User.objects.all().order_by('id'),
-        'background_image': 'img/943545.jpeg'
+        'background_image': 'img/fuckinghelpme.png'
     }
     return render(request, 'emergency/user_list.html', parameter)
+
+
+@user_passes_test(lambda u: u.is_superuser or u.is_staff)
+def emergency_list(request):
+    """
+    This page for the staff to list all the emergency.
+
+    This page is only accessible for the staff and superuser.
+
+    :param request: WSGI request from user.
+    :return: Render the page and pass the value from context to the template (emergency_list.html)
+    """
+    parameter = {
+        'emergency_list': Car.objects.filter(has_accident=True).order_by('id'),
+        'background_image': 'img/fuckinghelpme.png'
+    }
+    return render(request, 'emergency/emergency_list.html', parameter)
+

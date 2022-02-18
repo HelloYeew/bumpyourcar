@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from .serializers import *
+from django.http import JsonResponse
 from emergency.models import Location, Car
 
 
@@ -93,3 +94,13 @@ def get_car(request, car_id):
 
     serializer = CarFullSerializer(car)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+def get_emergency_count(request):
+    """
+    API view for GET request to get the count of the emergency.
+
+    :param request: HTTP request
+    :return: API response
+    """
+    return JsonResponse({'count': Car.objects.filter(has_accident=True).count()})

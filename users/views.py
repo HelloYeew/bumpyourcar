@@ -32,7 +32,7 @@ def profile(request, profile_id):
     """
     parameter = {
         'profile': get_object_or_404(Profile, id=profile_id),
-        'background_image': 'img/943545.jpeg',
+        'background_image': 'img/fuckinghelpme.png',
     }
     return render(request, 'users/profile.html', parameter)
 
@@ -54,7 +54,7 @@ def settings(request):
         form = UserProfileSettingsForm(instance=request.user.profile)
     parameter = {
         'user': request.user,
-        'background_image': 'img/943545.jpeg',
+        'background_image': 'img/fuckinghelpme.png',
         'profile_form': form,
     }
     return render(request, 'users/settings.html', parameter)
