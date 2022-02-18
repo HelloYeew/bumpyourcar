@@ -110,7 +110,7 @@ def emergency_detail(request, car_id):
     :return:
     """
     car = Car.objects.get(id=car_id)
-    if not car.has_accident:
+    if (not car.has_accident) and (not car.has_drowned):
         messages.error(request, "This car has no accident now!")
         return redirect('emergency_list')
     else:
