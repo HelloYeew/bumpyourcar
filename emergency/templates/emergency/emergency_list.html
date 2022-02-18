@@ -31,9 +31,17 @@
                 {% for emergency in emergency_list %}
                     <tr class="align-middle">
                       <th scope="row">{{ emergency.id }}</th>
-                      <td><img src="{{ emergency.user.profile.image.url }}" alt="{{ emergency.user.username }}" class="rounded-circle" style="max-width:50px"></td>
-                      <td>{{ emergency.user.first_name }} {{ emergency.user.last_name }}</td>
-                        <td>{% if emergency.has_accident %}Accident{% endif %} {% if emergency.has_drowned %}Drowned{% endif %}</td>
+                        <td><a href="{% url 'profile' emergency.user.id %}" class="text-decoration-none"><img src="{{ emergency.user.profile.image.url }}" alt="{{ emergency.user.username }}" class="rounded-circle" style="max-width:50px"></a></td>
+                        <td><a href="{% url 'profile' emergency.user.id %}" class="text-decoration-none spacing-hover">{{ emergency.user.first_name }} {{ emergency.user.last_name }}</a></td>
+                        {% if emergency.has_accident and emergency.has_drowned %}
+                            <td>Accident and Drowned</td>
+                        {% elif emergency.has_accident %}
+                            <td>Accident</td>
+                        {% elif emergency.has_drowned %}
+                            <td>Drowned</td>
+                        {% else %}
+                            <td>Unknown</td>
+                        {% endif %}
                       <td>{{ emergency.user.car.name }}</td>
                         <td><a href="{% url 'emergency_detail' emergency.id %}" class="btn btn-main"><i class="fas fa-pen"></i> Detail</a></td>
                     </tr>

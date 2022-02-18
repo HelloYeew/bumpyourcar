@@ -41,8 +41,8 @@
             {% for user in user_list %}
                 <tr class="align-middle">
                   <th scope="row">{{ user.id }}</th>
-                  <td><img src="{{ user.profile.image.url }}" alt="{{ user.username }}" class="rounded-circle" style="max-width:50px"></td>
-                  <td>{{ user.username }}</td>
+                  <td><a href="{% url 'profile' user.id %}" class="text-decoration-none"><img src="{{ user.profile.image.url }}" alt="{{ user.username }}" class="rounded-circle" style="max-width:50px"></a></td>
+                    <td><a href="{% url 'profile' user.id %}" class="text-decoration-none spacing-hover">{{ user.username }}</a></td>
                   <td>{{ user.first_name }}</td>
                   <td>{{ user.last_name }}</td>
                   <td>{{ user.location.lat }}</td>

@@ -43,7 +43,15 @@
                   {% else %}
                   <td>Vacant</td>
                   {% endif %}
-                  <td>{% if car.has_accident %}Accident{% endif %} {% if car.has_drowned %}Drowned{% endif %}</td>
+                  {% if car.has_accident and car.has_drowned %}
+                        <td>Accident and Drowned</td>
+                    {% elif car.has_accident %}
+                        <td>Accident</td>
+                    {% elif car.has_drowned %}
+                        <td>Drowned</td>
+                    {% else %}
+                        <td>-</td>
+                    {% endif %}
                   <td><a href="{% url 'admin:emergency_car_change' car.id %}" class="btn btn-main"><i class="fas fa-pen"></i> Manage</a></td>
                 </tr>
             {% endfor %}
