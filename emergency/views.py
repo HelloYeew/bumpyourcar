@@ -1,5 +1,7 @@
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
+from django.contrib import messages
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Car
 
@@ -97,3 +99,47 @@ def emergency_list(request):
     }
     return render(request, 'emergency/emergency_list.html', parameter)
 
+
+@user_passes_test(lambda u: u.is_superuser or u.is_staff)
+def emergency_detail(request, car_id):
+    """
+
+    :param request:
+    :param car_id:
+    :return:
+    """
+    car = Car.objects.get(id=car_id)
+    if not car.has_accident:
+        messages.error(request, "This car has no accident now!")
+        return redirect('emergency_list')
+    else:
+        parameter = {
+            'car': car,
+            'user_object': car.user,
+            'background_image': 'img/fuckinghelpme.png',
+            'location': car.user.location,
+        }
+        return render(request, 'emergency/emergency_detail.html', parameter)
+
+
+@user_passes_test(lambda u: u.is_superuser or u.is_staff)
+def resolve_car(request, car_id):
+    """
+    API view for mark the car as resolved.
+
+    :param request:
+    :param car_id:
+    :return:
+    """
+    try:
+        car = Car.objects.get(id=car_id)
+    except Car.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if not car.has_accident:
+        return HttpResponse(status=400)
+    else:
+        car.has_accident = False
+        car.save()
+        messages.success(request, "Resolve succesfully!")
+        return redirect('emergency_list')

@@ -1,0 +1,75 @@
+{% extends "emergency/base.html" %}
+{% load static %}
+
+{% block title %}emergency detail{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.12.0/css/ol.css" type="text/css">
+    <style>
+      .map {
+        height: 400px;
+        width: 100%;
+      }
+
+      @media (max-width: 990px) {
+          .map-container {
+              width: 100%;
+          }
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.12.0/build/ol.js"></script>
+{% endblock %}
+
+{% block body %}
+    <div style="color: #fff">
+        <div class="container">
+            <div class="container">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'staff' %}" class="text-decoration-none spacing-hover">Staff</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'emergency_list' %}" class="text-decoration-none spacing-hover">Emergency list</a></li>
+                    <li class="breadcrumb-item active" aria-current="page" style="color: #fff">Emergency detail</li>
+                  </ol>
+                </nav>
+            </div>
+            <h1>Emergency detail</h1>
+            <div class="row map-container">
+                <div class="col-md-6">
+                    <div id="map" class="map"></div>
+                </div>
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-5">
+                    <h2>Accident Detail</h2>
+
+                    <p>Username : {{ car.user.username }}</p>
+                    <p>Full name : {{ car.user.first_name }} {{ car.user.last_name }}</p>
+                    <p>Car name : {{ car.name }}</p>
+                    <p>Latitude : {{ location.lat|floatformat:-5 }}</p>
+                    <p>Longtitude : {{ location.lng|floatformat:-5 }}</p>
+                </div>
+            </div>
+        </div>
+        <p></p>
+        <div class="container">
+            <a class="btn btn-main" href="{% url 'resolve_car' car.id %}"><i class="fas fa-solid fa-circle-exclamation-check"></i>Mark as resolved</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript">
+      var map = new ol.Map({
+        target: 'map',
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+        ],
+        view: new ol.View({
+          center: ol.proj.fromLonLat([{{ location.lng }},{{ location.lat }}]),
+          zoom: 15
+        })
+      });
+    </script>
+{% endblock %}
