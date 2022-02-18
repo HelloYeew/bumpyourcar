@@ -10,17 +10,8 @@
       </div>
       <div class="container">
         <h2>Drive safe!</h2>
+          <img src="{% static 'img/nongphop.jpeg' %}" alt="TepPhop">
       </div>
-        {% if not debug %}
-      <div class="container">
-          <h1>Debug zone</h1>
-          <button onclick="enableLocation = false;" class="btn btn-main">Disable location</button>
-          <button onclick="enableLocation = true;" class="btn btn-main">Enable location</button>
-      </div>
-    {% endif %}
-    </div>
-    <div class="container">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/KH_XIt-hm2Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 {% endblock %}
 

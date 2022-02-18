@@ -143,3 +143,6 @@ def resolve_car(request, car_id):
         car.save()
         messages.success(request, "Resolve succesfully!")
         return redirect('emergency_list')
+
+
+
