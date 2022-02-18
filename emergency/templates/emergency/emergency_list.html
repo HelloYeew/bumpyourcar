@@ -40,7 +40,7 @@
                       <td>{{ emergency.user.last_name }}</td>
                       <td>{{ emergency.user.location.lat }}</td>
                       <td>{{ emergency.user.location.lng }}</td>
-                      <td>{{ emergency.user.car.car_name }}</td>
+                      <td>{{ emergency.user.car.name }}</td>
                         <td><a href="{% url 'emergency_detail' emergency.id %}" class="btn btn-main"><i class="fas fa-pen"></i> Detail</a></td>
                     </tr>
                 {% endfor %}
