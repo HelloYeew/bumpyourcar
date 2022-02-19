@@ -15,44 +15,7 @@
         </div>
         <div class="container">
             <h1>Emergency List</h1>
-            <div id="emergency_list">
-            {% if emergency_list %}
-              <table class="table table-dark table-striped table-hover">
-{#                <thead>#}
-{#                    <tr>#}
-{#                      <th scope="col">Car ID</th>#}
-{#                      <th scope="col">Full Name</th>#}
-{#                      <th scope="col">Accident Type</th>#}
-{#                      <th scope="col">Car</th>#}
-{#                      <th scope="col">Detail</th>#}
-{#                    </tr>#}
-{#                </thead>#}
-{#                <tbody>#}
-{#                {% for emergency in emergency_list %}#}
-{#                    <tr class="align-middle">#}
-{#                      <th scope="row">{{ emergency.id }}</th>#}
-{#                        <td><a href="#" class="text-decoration-none spacing-hover">{{ emergency.user.first_name }} {{ emergency.user.last_name }}</a></td>#}
-{#                        {% if emergency.has_accident and emergency.has_drowned %}#}
-{#                            <td>Accident and Drowned</td>#}
-{#                        {% elif emergency.has_accident %}#}
-{#                            <td>Accident</td>#}
-{#                        {% elif emergency.has_drowned %}#}
-{#                            <td>Drowned</td>#}
-{#                        {% else %}#}
-{#                            <td>Unknown</td>#}
-{#                        {% endif %}#}
-{#                      <td>{{ emergency.user.car.name }}</td>#}
-{#                        <td><a href="{% url 'emergency_detail' emergency.id %}" class="btn btn-main"><i class="fas fa-pen"></i> Detail</a></td>#}
-{#                    </tr>#}
-{#                {% endfor %}#}
-{#                  </tbody>#}
-{#              </table>#}
-            {% else %}
-                <h1 class="text-center"><img src="{% static 'img/blanksus.jpg' %}" alt="blanksus" width="300px"></h1>
-                <h1 class="text-center">No accident now!</h1>
-                <h1 class="text-center">Let's play some Genshin</h1>
-            {% endif %}
-            </div>
+            <div id="emergency_list"></div>
         </div>
     </div>
 {% endblock %}
@@ -115,7 +78,7 @@
                     th.innerHTML = emergency.id;
                     tr.appendChild(th);
                     th = document.createElement('td');
-                    th.innerHTML = '<a href="#" class="text-decoration-none spacing-hover">' + emergency.user.first_name + ' ' + emergency.user.last_name + '</a>';
+                    th.innerHTML = '<a href="/profile/' + emergency.user.id + '" class="text-decoration-none">' + emergency.user.first_name + ' ' + emergency.user.last_name + '</a>';
                     tr.appendChild(th);
                     if (emergency.has_accident && emergency.has_drowned) {
                         th = document.createElement('td');
