@@ -49,7 +49,7 @@ def staff(request):
     parameter = {
         'user': request.user,
         'background_image': 'img/fuckinghelpme.png',
-        'accident_count': Car.objects.filter(has_accident=True).count(),
+        'accident_count': Car.objects.filter(Q(has_accident=True) | Q(has_drowned=True)).filter(~Q(user=None)).count(),
     }
     return render(request, 'emergency/staff.html', parameter)
 

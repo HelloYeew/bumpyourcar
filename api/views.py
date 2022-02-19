@@ -102,7 +102,7 @@ def get_emergency_count(request):
     :param request: HTTP request
     :return: API response
     """
-    return JsonResponse({'count': Car.objects.filter(Q(has_accident=True) | Q(has_drowned=True)).count()})
+    return JsonResponse({'count': Car.objects.filter(Q(has_accident=True) | Q(has_drowned=True)).filter(~Q(user=None)).count()})
 
 
 @api_view(['GET'])
