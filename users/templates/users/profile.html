@@ -3,11 +3,27 @@
 
 {% block title %}{{ profile.user.username }}'s profile{% endblock %}
 
+{% block style %}
+<style>
+@media (max-width: 990px) {
+    #profile-pic {
+        width: 100px!important;
+        height: 100px!important;
+    }
+}
+
+#profile-pic {
+    width: 300px;
+    height: 300px;
+}
+</style>
+{% endblock %}
+
 {% block body %}
     <div class="container" style="color: #fff">
         <div class="row">
             <div class="col-md-3">
-                <img class="rounded-circle" src="{{ profile.image.url }}" alt="profile image" style="width:100%">
+                <img class="rounded-circle" id="profile-pic" src="{{ profile.image.url }}" alt="profile image">
             </div>
             <div class="col-md-9">
                 <h1>{{ profile.user.first_name }} {{ profile.user.last_name }}</h1>

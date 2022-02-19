@@ -29,7 +29,7 @@ def drive(request):
     if FirstLogin.objects.get(user=request.user).first_login:
         parameter = {
             'user': request.user,
-            'background_image': 'img/fuckinghelpme.png'
+            'background_image': 'img/sustwerk.gif'
         }
         return render(request, 'emergency/drive.html', parameter)
     else:

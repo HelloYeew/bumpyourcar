@@ -3,14 +3,25 @@
 
 {% block title %}driving{% endblock %}
 
+{% block style %}
+<style>
+@media (max-width: 990px) {
+    #sus {
+        width: 100%!important;
+    }
+}
+</style>
+{% endblock %}
+
 {% block body %}
     <div style="color: #fff">
       <div class="container">
         <h1 style="font-size: 3.5em;">👋 Welcome, {{ user.username }}!</h1>
       </div>
       <div class="container">
-        <h2>Drive safe!</h2>
-          <img src="{% static 'img/nongphop.jpeg' %}" alt="TepPhop">
+        <p class="text-center"><img src="{% static 'img/sustwerkfast.gif' %}" alt="SUSTWERK" id="sus"></p>
+          <h1 class="text-center">You are driving!</h1>
+          <h1 class="text-center"><a href="{% url 'logout' %}" class="btn btn-main">Finish Driving</a></h1>
       </div>
     </div>
 {% endblock %}
