@@ -19,20 +19,21 @@ class CarStatusSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name']
+        fields = ['id', 'username', 'first_name', 'last_name']
 
 
 class CarFullSerializer(serializers.ModelSerializer):
     user = UserSerializer()
+
     class Meta:
         model = Car
         fields = ['id', 'name', 'has_accident', 'has_drowned', 'user']
 
 
-class ProfileSerializer(serializers.ModelSerializer):
+class EmergencyListSerializer(serializers.Serializer):
     user = UserSerializer()
 
     class Meta:
-        model = Profile
-        fields = ['user', 'image', 'personal_id', 'address']
+        model = Car
+        fields = ['name', 'has_accident', 'has_accident', 'user']
         depth = 1

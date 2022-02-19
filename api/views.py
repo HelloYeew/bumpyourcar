@@ -1,7 +1,6 @@
-from django.contrib.auth.decorators import user_passes_test
+from django.db.models import Q
 from rest_framework import status
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import *
 from django.http import JsonResponse
@@ -9,7 +8,6 @@ from emergency.models import Location, Car
 
 
 @api_view(['GET','PUT'])
-# @permission_classes([IsAuthenticated])
 def user_location(request, user_id):
     """
     API view for PUT request to post the location from geolocation API to the database or GET request to get the
@@ -104,4 +102,17 @@ def get_emergency_count(request):
     :param request: HTTP request
     :return: API response
     """
-    return JsonResponse({'count': Car.objects.filter(has_accident=True).count()})
+    return JsonResponse({'count': Car.objects.filter(Q(has_accident=True) | Q(has_drowned=True)).count()})
+
+
+@api_view(['GET'])
+def get_emergency_list(request):
+    """
+    API view for GET request to get the list of the emergency.
+
+    :param request: HTTP request
+    :return: API response
+    """
+    car_list = Car.objects.filter(Q(has_accident=True) | Q(has_drowned=True)).filter(~Q(user=None))
+    serializer = CarFullSerializer(car_list, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
