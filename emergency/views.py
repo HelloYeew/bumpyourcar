@@ -141,7 +141,7 @@ def resolve_car(request, car_id):
     except Car.DoesNotExist:
         return HttpResponse(status=404)
 
-    if not car.has_accident:
+    if not car.has_accident and not car.has_drowned:
         return HttpResponse(status=400)
     else:
         car.has_accident = False
