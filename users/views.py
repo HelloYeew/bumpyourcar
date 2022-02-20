@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import BadRequest
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .models import FirstLogin
@@ -24,6 +25,7 @@ def register(request):
     return render(request, 'users/register.html', {'form': form})
 
 
+@login_required
 def profile(request, profile_id):
     """
     The view for the profile page. User can view other user's profile too by using the profile ID.
@@ -31,11 +33,15 @@ def profile(request, profile_id):
     :param profile_id: The ID of the target user.
     :return: Render the page and pass the value from context to the template (profile.html)
     """
-    parameter = {
-        'profile': get_object_or_404(Profile, id=profile_id),
-        'background_image': 'img/fuckinghelpme.png',
-    }
-    return render(request, 'users/profile.html', parameter)
+    profile = get_object_or_404(Profile, id=profile_id)
+    if (request.user == profile.user) or request.user.is_superuser:
+        parameter = {
+            'profile': profile,
+            'background_image': 'img/fuckinghelpme.png',
+        }
+        return render(request, 'users/profile.html', parameter)
+    else:
+        raise BadRequest('Invalid request.')
 
 
 @login_required
