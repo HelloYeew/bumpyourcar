@@ -10,5 +10,5 @@ urlpatterns = [
     path('staff/emergency', views.emergency_list, name='emergency_list'),
     path('staff/emergency/<int:car_id>', views.emergency_detail, name='emergency_detail'),
     path('staff/emergency/resolve/<int:car_id>', views.resolve_car, name='resolve_car'),
-    path('kuay', views.mock_api, name='mock_api'),
+    path('mock', views.mock_api, name='mock_api'),
 ]
