@@ -39,7 +39,7 @@
                   <th scope="row">{{ car.id }}</th>
                   <td>{{ car.name }}</td>
                   {% if car.user %}
-                      <td><a href="{% url 'profile' car.user.id %}" class="text-decoration-none spacing-hover"><img src="{{ car.user.profile.image.url }}" alt="{{ car.user.username }}" class="rounded-circle" style="max-width:50px">{{ car.user.first_name }} {{ car.user.last_name }}</a></td>
+                      <td><a href="{% url 'profile' car.user.id %}" class="text-decoration-none spacing-hover"><img src="{{ car.user.profile.image.url }}" alt="{{ car.user.username }}" class="rounded-circle" style="max-width:50px" width="50" height="50">{{ car.user.first_name }} {{ car.user.last_name }}</a></td>
                   {% else %}
                   <td>Vacant</td>
                   {% endif %}
