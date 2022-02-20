@@ -101,7 +101,7 @@
                     th.innerHTML = emergency.name;
                     tr.appendChild(th);
                     th = document.createElement('td');
-                    th.innerHTML = '<a href="/staff/emergency/' + emergency.id + '" class="btn btn-main"><i class="fas fa-pen"></i> Detail</a> <a href="/staff/emergency/resolve/' + emergency.id + '" class="btn btn-main"><i class="fas fa-check"></i> Resolve</a>';
+                    th.innerHTML = '<a href="/staff/emergency/' + emergency.id + '" class="btn btn-main"><i class="fas fa-pen"></i> Detail</a> <a href="/staff/emergency/resolve/' + emergency.id + '" class="btn btn-main"><i class="fas fa-check"></i> Mark as resolved</a>';
                     tr.appendChild(th);
                     tbody.appendChild(tr);
                 }
