@@ -20,11 +20,14 @@
       </div>
       <div class="container">
         <p class="text-center"><img src="{% static 'img/sustwerkfast.gif' %}" alt="SUSTWERK" id="sus"></p>
+          <p class="text-center">
+            <audio controls autoplay src="{% static 'track/sus.mp3' %}" id="sus-player"></audio>
+          </p>
           <h1 class="text-center">You are driving!</h1>
           <h1 class="text-center"><a href="{% url 'logout' %}" class="btn btn-main">Finish Driving</a></h1>
       </div>
     </div>
-    <embed src="{% static "track/sus.mp3" %}" loop="true" autostart="true" width="2" height="0" id="player-sus">
+
 {% endblock %}
 
 {% block script %}
@@ -57,5 +60,14 @@
             }
         }
         window.setInterval(postUserLocation, 1000);
+        {#window.onLoad(document.getElementById('sus-player').play());#}
+
+        window.addEventListener('load', function() {
+            // add delay to prevent the sound from playing too fast
+            setTimeout(function() {
+                document.getElementById('sus-player').play();
+            }, 3000);
+            document.getElementById('sus-player').loop = true;
+        });
     </script>
 {% endblock %}
