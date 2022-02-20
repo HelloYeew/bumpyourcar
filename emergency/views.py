@@ -149,3 +149,12 @@ def resolve_car(request, car_id):
         car.save()
         messages.success(request, "Resolve succesfully!")
         return redirect('emergency_list')
+
+
+@user_passes_test(lambda u: u.is_superuser or u.is_staff)
+def mock_api(request):
+    parameter = {
+        'user_list': User.objects.all().order_by('id'),
+        'background_image': 'img/fuckinghelpme.png'
+    }
+    return render(request, 'emergency/mock_api.html', parameter)

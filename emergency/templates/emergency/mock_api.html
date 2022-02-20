@@ -1,0 +1,75 @@
+{% extends "emergency/base.html" %}
+{% load static %}
+
+{% block title %}mock api{% endblock %}
+
+{% block body %}
+    <div style="color: #fff" class="container">
+        <label for="car-number">
+            <input type="number" class="form-control" id="car-number" placeholder="number">
+        </label>
+    </div>
+    <div class="container">
+        <button class='btn btn-main' onclick="putCarCrash(document.getElementById('car-number').value)">Car Crash</button>
+        <button class='btn btn-main' onclick="putCarDrowned(document.getElementById('car-number').value)">Car Drowned</button>
+        <button class='btn btn-main' onclick="resolveCar(document.getElementById('car-number').value)">Resolve</button>
+    </div>
+{% endblock %}
+
+{% block script %}
+<script>
+    function putCarCrash(car) {
+        fetch('/api/car/' + car, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-csrftoken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({
+                'has_accident': true,
+                'has_drowned': false
+            })
+        }).then(function(response) {
+            return response.json();
+        }).then(function(json) {
+            console.log(json);
+        });
+    }
+
+    function putCarDrowned(car) {
+        fetch('/api/car/' + car, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-csrftoken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({
+                'has_accident': false,
+                'has_drowned': true
+            })
+        }).then(function(response) {
+            return response.json();
+        }).then(function(json) {
+            console.log(json);
+        });
+    }
+
+    function resolveCar(car) {
+        fetch('/api/car/' + car, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-csrftoken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({
+                'has_accident': false,
+                'has_drowned': false
+            })
+        }).then(function(response) {
+            return response.json();
+        }).then(function(json) {
+            console.log(json);
+        });
+    }
+</script>
+{% endblock %}
